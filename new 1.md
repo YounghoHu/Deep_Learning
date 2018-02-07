@@ -1,3 +1,4 @@
+# Deep Feedforward Networks
 **Deep FeedForward Networks**은 **feedforward neural networks**와 **Multilayer Perceptrons**(**MLP**)라는 명칭을 사용하기도 하며, 주어진 입력값 X에 대한 결과값 Y를 구하는 함수 *f*를 계산할 때 사용된다. 예시로, Linear regression에서 y = *f*(x)라고 정의 할때, *f*(x)=*W*x+*b*이고, Feedforward Networks는 *W*의 값을 배움으로 써 주어진 입력x에 대한 알맞는 결과값 y를 구할 수 있다. 
 
 FeedForward라고 불리는 이유는 입력값 x로부터 함수*f*를 통해 결과값 y로 나올때 어떠한 정보들도 피드백(**Feedback**)되지 않기 때문이다. 만약 결과값 Y가 함수 *f* 에 연결되거나 함수*f* 자체 내에서 Feedback이 사용된 경우 **Recurrent Neural Networks**로 정의된다. 
