@@ -8,4 +8,4 @@ FeedForward라고 불리는 이유는 입력값 x로 부터 함수 *f* 를 통�
 이러한 구조는 신경망에서 가장 많이 쓰이고 3단계의 레이어(**Input Layer**, **Hidden Layer**, **Output Layer**)로 정의 할 수 있다. 예제에서, x는 입력값 레이어(**Input layer**), ![equation](https://latex.codecogs.com/gif.latex?f%5E%7B%281%29%7D)는 두번째 레이어, ![equation](https://latex.codecogs.com/gif.latex?f%5E%7B%282%29%7D)는 세번째 레이어, 마지막 레이어(y)는 결과값 레이어(**Output Layer**)라 부른다. 이때 입력값 레이어와 결과값 레이어 사이에 있는 레이어들이 **Hidden Layer**이다.
 
 ## Linear Vs. nonLinear
-Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 또는 convex형태의 그래프일 때 안정적이고 효과적인 결과값을 구할수있지만, 일차 함수에서만 사용 할 수 있고, 결국 linear 모델은 두개의 입력값 사이의 관계를 이해할 수 없다는 단점을 가지고 있다. 이를 극복하기 위해 linear 모델에 입력값 x를 바로 대입하지 않고 x를 커널 함수(**Kernel function**) \phi(x)로 변경 후 \phi(x)를 모델의 입력값으로 대입한다. 이 함수 \phi를 nonlinear transformation이라 한다. 
+Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 또는 convex형태의 그래프일 때 안정적이고 효과적인 결과값을 구할수있지만, 일차 함수에서만 사용 할 수 있고, 결국 linear 모델은 두개의 입력값 사이의 관계를 이해할 수 없다는 단점을 가지고 있다. 이를 극복하기 위해 linear 모델에 입력값 x를 바로 대입하지 않고 x를 커널 함수(**Kernel function**) \phi(x)로 변경 후 \phi(x)를 모델의 입력값으로 대입한다. 이 함수 \alpha를 nonlinear transformation이라 한다. 
