@@ -106,4 +106,14 @@ Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수이
 ### 결과값 유닛 (Output Unit)
 cost 함수를 정하는 것은 output unit을 정하는 것과 상당히 밀첩한 관계가 있다. 보통, 데이터 분포도와 모델 분포도를 가지고 cross-entropy 함수를 사용 하여 cost 값을 구하고, 결과값을 어떻게 표현 하느냐에 따라 cross-entropy 함수의 유형이 정해진다. Layer를 설명 할때도 언급했듯이, 마지막 레이어가 output layer, hidden unit이 output unit이 될수 있고 output unit이 hidden unit이 될수 있다. 
 
-#### 가우시안 결과값 분포도를 위한 선형 Unit
+#### 가우시안 분포를 사용한 Linear Unit
+Linear output layer는 대부분 조전부 가우시안 분포도의 평균(conditional Gaussian distribution)을 나타낸다. log-likelihood를 최대화를 시킨 값은 mean squated error를 최소화한 값이랑 일치하고 최대가능도를 사용 해서 가우시안의 공분산(covariance)를 구할수 있다. 하지만, 공분산은 모든 입력값이 양수 matrix에 정의 되어야 하는 제한이 있다. 이러한 한계를 극복하기 위해 다른 output unit으로 공분산을 parameter로 적용 시킨다. 또한 linear unit은 gradient를 작게 만들지 않기 때문에 여러 최적화 알고리즘와 사용 할수 있는 장점이있다.
+
+#### Bernoulli 분포를 사용한 Sigmoid Unit
+결과값을 이진법으로 나타낼때 또는 Classification 문제를 해결하기 위해 사용된다.  Bernoulli 분포를 사용 하면 신경만은 오직 *P*(y = 1 | x)만 구하면 된다. 또한 이 확율이 알맞는 값이기 위해선 [0,1]사이의 값이여야만 한다. 만약 Linear unit을 사용한 경우 아래와 같은 식을 쓰고,
+
+![equation](https://latex.codecogs.com/gif.latex?P%28y%20%3D%201%20%7C%20x%29%20%3D%20max%5C%7B0%2Cmin%5C%7B1%2Cwx&plus;b%5C%7D%5C%7D)
+
+조건부 분도포(conditional distribution)에는 알맞지만 실제 훈련시 gadient descent가 재대로 작동하지 않는다. 그이유는 *wx*+*c*의 값이 [0,1]사이의 값에서 벗어나면 gradient는 0으로 변하게 되고, gadient가 0일때 학습 알고리즘은 더나은 parameter를 선택할 수 없는 상황이 되어버린다. 
+
+따라서, Linear unit을 사용하기 보단 Sigmoid unit을 사용 하여 알맞는 답이 아닐시 gradient를 크게 만들어 학습을 시킬 수 있도록 하는 방법을 사용한다. 
