@@ -130,3 +130,8 @@ sigmoid unit을 적용 하는 방법은 linear layer가 *z* = *wx* + *b*를 구�
 
 ![eq](https://latex.codecogs.com/gif.latex?C%28y%29%20%3D%20-log%28%5Csigma%20%28%282y-1%29z%29%29)
 
+위의 식에 SoftPlus 함수를 적용 시키면,
+
+![eq](https://latex.codecogs.com/gif.latex?C%28y%29%20%3D%20%5Czeta%20%28%282y-1%29z%29%2C)
+
+where, ![eq](https://latex.codecogs.com/gif.latex?%5Czeta%20%28x%29%20%3D%20log%281%20&plus;%20exp%28x%29%29)
