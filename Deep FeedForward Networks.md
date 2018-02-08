@@ -141,3 +141,16 @@ where, ![eq](https://latex.codecogs.com/gif.latex?%5Czeta%20%28x%29%20%3D%20log%
 
 #### Multinoulli 분포를 사용한 Softmax Unit
 Softmax unit은 *n*개의 discrete 변수의 확율 분포를 구할 때 사용된다. 위에서 설명한 sigmoid unit의 일반화된 방법이라 생각 할 수 있다. Softmax에서 분류한 각 개채안에서 소분류가 필요하면 Softmax unit안에 Softmax unit을 포함시킬 수 있다. 
+
+Sigmoid unit에서는 y = *P*(y =1 | x)이면, Softmax Unit에선 아래와 같이 표현한다.
+
+ ![eq](https://latex.codecogs.com/gif.latex?y_%7Bi%7D%20%3D%20P%28y%20%3D%20i%20%7C%20x%29)
+ 
+위의 식에서 각각의 y의 값은 0과 1 사이의 값이여야 하며, 총합이 1이 되어야 한다. 먼저 Sigmoid unit과 같이 liner layer를 사용 하여 *z*값을 구한 후,
+
+![eq](https://latex.codecogs.com/gif.latex?z%20%3D%20Wh%20&plus;%20b%2C) where
+![eq](https://latex.codecogs.com/gif.latex?z_%7Bi%7D%20%3D%20log%5Ctilde%7BP%7D%28y%20%3D%20i%20%7C%20x%29)
+
+Softmax 함수에 *z*를 대입하여 원하는 y의 값을 산출한다.
+
+![eq](https://latex.codecogs.com/gif.latex?softmax%28z%29_%7Bi%7D%20%3D%20%5Cfrac%7Bexp%28z_%7Bi%7D%29%7D%7B%5Csum_%7Bj%7Dexp%28z_i%29%7D)
