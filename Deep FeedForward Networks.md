@@ -140,3 +140,4 @@ where, ![eq](https://latex.codecogs.com/gif.latex?%5Czeta%20%28x%29%20%3D%20log%
 마지막으로, 실제 구현시, 0과 1을 포함[0,1]하는 범위 대신 0과 1을 포함하지 않는 (0,1) 범위를 설정해야 한다. 만약 sigmoid 함수가 0이 되어 버리면, 알고리즘은 음수 무한대의 값이 되기때문에 계산에 문제가 발생한다.
 
 #### Multinoulli 분포를 사용한 Softmax Unit
+Softmax unit은 *n*개의 discrete 변수의 확율 분포를 구할 때 사용된다. 위에서 설명한 sigmoid unit의 일반화된 방법이라 생각 할 수 있다. Softmax에서 분류한 각 개채안에서 소분류가 필요하면 Softmax unit안에 Softmax unit을 포함시킬 수 있다. 
