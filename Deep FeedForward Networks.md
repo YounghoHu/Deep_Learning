@@ -20,11 +20,9 @@ Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 
 ## Example: Learning XOR
 FeedForward network를 좀 더 이해하기 쉽게 XOR함수를 학습하는 과정을 설명 하면서 위의 내용을 정리해 보자. XOR함수는 두개의 입력값이 서로 다를 때만 1을 반환하고 서로 다를 경우 0을 반환하는 함수이다.
 
-입력값은 정리하면 ![equation](https://latex.codecogs.com/gif.latex?X%20%3D%20%7B%5B0%2C0%5D%2C%5B0%2C1%5D%2C%5B1%2C0%5D%2C%5B1%2C1%5D%7D)이고 모댈은 Linear 모델을 사용 하여 ![equation](https://latex.codecogs.com/gif.latex?f%28x%3Bw%2Cb%29%20%3D%20xw&plus;b)으로 수식을 정의 한다. loss/cost 함수는 Mean Square Error(MSE)를 사용하고 수식으론
+입력값은 정리하면 ![equation](https://latex.codecogs.com/gif.latex?X%20%3D%20%7B%5B0%2C0%5D%2C%5B0%2C1%5D%2C%5B1%2C0%5D%2C%5B1%2C1%5D%7D)이고 모댈은 Linear 모델을 사용 하여 ![equation](https://latex.codecogs.com/gif.latex?f%28x%3Bw%2Cb%29%20%3D%20xw&plus;b)으로 수식을 정의 한다. loss/cost 함수는 Mean Square Error(MSE)를 사용하고 수식으로 다음과 같이 표현한다.
 
 ![equation](https://latex.codecogs.com/gif.latex?c%28%5Ctheta%29%20%3D%20%5Cfrac%7B1%7D%7B4%7D%5Csum_%7Bx%5Cin%20X%7D%28f%5E%7B*%7D%28x%29%20-%20f%28x%3B%5Ctheta%20%29%29%5E%7B2%7D)
-
-으로 표현한다. 
 
 위의 모델에 입력값을 넣어 W와 b를 구하면 w = 0, b = ![equation](https://latex.codecogs.com/gif.latex?%5Cfrac%7B1%7D%7B2%7D)이 된다. 결국 이 모델의 정확성은 0.5가 된다. 그 이유는 아래의 그림을 보면 알 수 있다.
 
@@ -34,7 +32,7 @@ AND와 OR의 경우 직선 하나로 두개의 결과값(0,1)을 구분 할수 �
 
 ![equation](https://latex.codecogs.com/gif.latex?y%20%3D%20f%28h%3BW%2Cb%29%2C%20h%20%3D%20f%28x%3Bw%2C%20c%29)
 
-![equation](https://latex.codecogs.com/gif.latex?y%20%3D%20f%5E%7B%282%29%7D%28f%5E%7B%281%29%7D%28x%3Bw%2Cc%29%3BW%2Cb%29%29)
+![equation](https://latex.codecogs.com/gif.latex?%5Ctherefore%20y%20%3D%20f%28h%3BW%2Cb%29%2C%20h%20%3D%20f%28x%3Bw%2C%20c%29)
 
 
 
