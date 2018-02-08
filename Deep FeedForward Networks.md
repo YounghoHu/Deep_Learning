@@ -114,6 +114,14 @@ Linear output layer는 대부분 조전부 가우시안 분포도의 평균(cond
 
 ![equation](https://latex.codecogs.com/gif.latex?P%28y%20%3D%201%20%7C%20x%29%20%3D%20max%5C%7B0%2Cmin%5C%7B1%2Cwx&plus;b%5C%7D%5C%7D)
 
-조건부 분도포(conditional distribution)에는 알맞지만 실제 훈련시 gadient descent가 재대로 작동하지 않는다. 그이유는 *wx*+*c*의 값이 [0,1]사이의 값에서 벗어나면 gradient는 0으로 변하게 되고, gadient가 0일때 학습 알고리즘은 더나은 parameter를 선택할 수 없는 상황이 되어버린다. 
+조건부 분도포(conditional distribution)에는 알맞지만 실제 훈련시 gadient descent가 재대로 작동하지 않는다. 그이유는 *wx*+*c*의 값이 [0,1]사이의 값에서 벗어나면 gradient는 0으로 변하게 되고, gadient가 0일때 학습 알고리즘은 더나은 parameter를 선택할 수 없는 상황이 되어버린다. 따라서, Linear unit을 사용하기 보단 Sigmoid unit을 사용 하여 알맞는 답이 아닐시 gradient를 크게 만들어 학습을 시킬 수 있도록 하는 방법을 사용한다. 
 
-따라서, Linear unit을 사용하기 보단 Sigmoid unit을 사용 하여 알맞는 답이 아닐시 gradient를 크게 만들어 학습을 시킬 수 있도록 하는 방법을 사용한다. 
+sigmoid unit을 적용 하는 방법은 linear layer가 *z* = *wx* + *b*를 구한 후 *z*를 sigmoid unit에 대입하여 확율 ![eq](https://latex.codecogs.com/gif.latex?%5Ctilde%7BP%7D%28y%29)을 구하는 방식으로 구해진 확율의 총 값은 1을 초과하지만, 이 확율들을 적절한 상수로 나누면 총합이 1인 확율이 구해진다. 수식으로 다음과 같이 표현한다.
+
+![eq](https://latex.codecogs.com/gif.latex?log%5Ctilde%7BP%7D%28y%29%20%3D%20yz%2C)
+
+![eq](https://latex.codecogs.com/gif.latex?%5Ctilde%7BP%7D%20%3D%20exp%28yz%29%2C)
+
+![eq](https://latex.codecogs.com/gif.latex?P%28y%29%20%3D%20%5Cfrac%7Bexp%28yz%29%7D%7B%5Csum_%7B%7By%7D%27%3D0%7D%5E%7B1%7Dexp%28%7By%7D%27z%29%7D%2C)
+
+![eq](https://latex.codecogs.com/gif.latex?P%28y%29%20%3D%20sigmoid%28%282y-1%29z%29)
