@@ -30,5 +30,12 @@ FeedForward network를 좀 더 이해하기 쉽게 XOR함수를 학습하는 과
 
 ![XOR graph](http://solarisailab.com/wp-content/uploads/2017/05/xor_limitation.gif)
 
+AND와 OR의 경우 직선 하나로 두개의 결과값(0,1)을 구분 할수 있지만, XOR의 경우 직선 하나로 두개의 결과값을 구분 할 수 없다. 직선 하나로 구분 시 0과 1이 모두 들어 있기 때문에 정확성이 0.5일 수 밖에 없다. 이를 해결하기 위해 Hidden Layer 하나를 사용한 feedforward network를 구성해 보자. 이를 수식으로 표현하면, 
+
+![equation](https://latex.codecogs.com/gif.latex?h%20%3D%20f%28x%3Bw%2Cc%29%2C%20y%20%3D%20f%28h%3Bw%2Cb%29)
+
+![equation](https://latex.codecogs.com/gif.latex?y%20%3D%20f%5E%7B%282%29%7D%28f%5E%7B%281%29%7D%28x%3Bw%2Cc%29%3BW%2Cb%29%29)
+
+
 ## Gradient-based Learning
 Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선형(nonlinearity) 특징 때문에 cost 함수의 그래프가 convex형태로 나타나지 않는다는 점이다. 결국
