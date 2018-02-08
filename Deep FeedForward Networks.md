@@ -38,6 +38,7 @@ Hidden Layer에서 산출한 값을 결과값으로 표현하기 위해 Activati
 
 이제 만들어진 nonLinear 모델을 계산하여 결과값이 정확한지 확인 해보자.
 각각의 wight와 bias를 정의하면 다음과 같다. b = 0 이다.
+
 ![equation](https://latex.codecogs.com/gif.latex?X%3D%5Cbegin%7Bbmatrix%7D%200%20%26%200%5C%5C%200%20%26%201%5C%5C%201%20%26%200%5C%5C%201%20%26%201%20%5Cend%7Bbmatrix%7D%2C%20w%3D%5Cbegin%7Bbmatrix%7D%201%20%26%201%5C%5C%201%20%26%201%20%5Cend%7Bbmatrix%7D%2C%20W%3D%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%20-2%20%5Cend%7Bbmatrix%7D%2C%20c%3D%5Cbegin%7Bbmatrix%7D%200%5C%5C-1%20%5Cend%7Bbmatrix%7D)
 
 먼저 *h*를 계산하면 
@@ -48,16 +49,15 @@ Hidden Layer에서 산출한 값을 결과값으로 표현하기 위해 Activati
 
 ![equation](https://latex.codecogs.com/gif.latex?xw%20&plus;%20c%3D%5Cbegin%7Bbmatrix%7D%200%20%26%20-1%5C%5C%201%20%26%200%5C%5C%201%20%26%200%5C%5C%202%20%26%201%20%5Cend%7Bbmatrix%7D)
 
-구한 h값을 Activation 함수 ReLU에 적용 시키면,
+구한 *h*값을 Activation 함수 ReLU에 적용 시키면,
 
 ![equation](https://latex.codecogs.com/gif.latex?ReLu%28h%29%3D%5Cbegin%7Bbmatrix%7D%200%20%26%200%20%5C%5C%201%20%26%200%5C%5C%201%20%26%200%5C%5C%202%20%26%201%20%5Cend%7Bbmatrix%7D)
 
-마지막으로 *ReLU(h)*에 W를 곱하면, 
+마지막으로 *ReLU*(*h*)에 *W*를 곱하면, 
 
 ![equation](https://latex.codecogs.com/gif.latex?hW%3D%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%201%20%5C%5C%201%20%5C%5C%200%20%5Cend%7Bbmatrix%7D)
 
-모든 입력값의 결과가 재대로 나왔다. 단순 Linear에선 0.5의 정확성이 였지만, Hidden Layer를 사용한 FeedForward Networks에선 100%의 정확성을 보여준다. 현실에선 위와 같이 정확한 wight와 bias값을 찾긴 불가능 하지만, **Gradient Descent**를 사용하면 높은 정확성을 기대 할 수 있다. 
-
+모든 입력값의 결과가 재대로 나왔다. 단순 Linear에선 0.5의 정확성이 였지만, Hidden Layer를 사용한 FeedForward Networks에선 100%의 정확성을 보여준다. 현실에선 위와 같이 정확한 *wight*와 *bias*값을 찾긴 불가능 하지만, **Gradient Descent**를 사용하면 높은 정확성을 기대 할 수 있다. 
 
 
 ## Gradient-based Learning
