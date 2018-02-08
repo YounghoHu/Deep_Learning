@@ -86,6 +86,7 @@ Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수이
 주어진 입력값으로 결과값의 조건부 통계를 알고 싶을때 사용 되는 방법을 설명한다. 예를 들어 입력값 하나를 주어졌을때 결과값의 평균을 구하고자 할때가 있다. 특정한 특징을 parameter로 사용 하는 것이 아닌 연속성(countinuity) 또는 경계(boundedness)와 같은 특징을 사용하여 신경망의 cost 함수가 범함수(**Functional**)의 역활을 하는 방식으로 생각 할 수 있다. 정리하면, 범함수란 함수로부터 실제값을 구하는 함수로 생각 할수 있고 딥 러닝에서 parameter를 선택해 학습하는 개념이 아닌 함수를 선택해 학습하는 개념으로 생각 할 수 있다. cost 범함수를 설계할 때 cost의 값이 우리가 원하는 특정 함수일 때 최소가 될 수 있도록 한다. 최적화 문제(optimization)를 해결 하기 위해선 변분법(**Calculus of variations**)가 필요하다. 아래에서 두가지 죄적화 방법을 설명 하겠다.
 
 1. 각 입력값 x로 결과값의 평균을 예측하는 함수를 구하는 방법
+
 ![equation](https://latex.codecogs.com/gif.latex?f%5E%7B*%7D%20%3D%20argmin%5Cboldsymbol%7BE%7D_%7Bx%2Cy%5Csim%20P_%7Bdata%7D%7D%7C%7Cy%20-%20f%28x%29%29%7C%7C%5E%7B2%7D)
 
 또는 
