@@ -80,5 +80,7 @@ Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수 �
 
 ![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20-%5Csum%20ylog%28xw%29%29&plus;%20%281-y%29log%281-wx%29%29)
 
-최대가능도를 사용한 cost 함수의 장점은 각각의 모델에 맞춘 cost함수를 만들 필요성이 사라지는 것이다. 모델의 *p*(*y*|*x*)만 정해주면 cost함수를 바로 적용 할 수 있다. 
+최대가능도를 사용한 cost 함수의 장점은 각각의 모델에 맞춘 cost함수를 만들 필요성이 사라지는 것이다. 모델의 *p*(*y*|*x*)만 정해주면 cost함수를 바로 적용 할 수 있다. 또한, log 함수를 사용 함으로 써 지수함수(exponential function)을 사용한 결과값 산출에서 발생되는 vanishing gredient 문제를 해결할 수 있다.
+
+#### 조건부 확율 학습
 
