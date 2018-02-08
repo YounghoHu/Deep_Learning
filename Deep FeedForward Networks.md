@@ -21,9 +21,10 @@ Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 
 FeedForward network를 좀 더 이해하기 쉽게 XOR함수를 학습하는 과정을 설명 하면서 위의 내용을 정리해 보자. XOR함수는 두개의 입력값이 서로 다를 때만 1을 반환하고 서로 다를 경우 0을 반환하는 함수이다.
 
 입력값은 정리하면 ![equation](https://latex.codecogs.com/gif.latex?X%20%3D%20%7B%5B0%2C0%5D%2C%5B0%2C1%5D%2C%5B1%2C0%5D%2C%5B1%2C1%5D%7D)이고 모댈은 Linear 모델을 사용 하여 ![equation](https://latex.codecogs.com/gif.latex?f%28x%3Bw%2Cb%29%20%3D%20xw&plus;b)으로 수식을 정의 한다. loss/cost 함수는
- ![equation](https://latex.codecogs.com/gif.latex?c%28%5Ctheta%29%20%3D%20%5Cfrac%7B1%7D%7B4%7D%5Csum_%7Bx%5Cin%20X%7D%28f%5E%7B*%7D%28x%29%20-%20f%28x%3B%5Ctheta%20%29%29%5E%7B2%7D)
- 으로 정의 한다. 
 
+![equation](https://latex.codecogs.com/gif.latex?c%28%5Ctheta%29%20%3D%20%5Cfrac%7B1%7D%7B4%7D%5Csum_%7Bx%5Cin%20X%7D%28f%5E%7B*%7D%28x%29%20-%20f%28x%3B%5Ctheta%20%29%29%5E%7B2%7D)
+
+으로 정의 한다. 
 
 ## Gradient-based Learning
 Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선형(nonlinearity) 특징 때문에 cost 함수의 그래프가 convex형태로 나타나지 않는다는 점이다. 결국
