@@ -18,6 +18,10 @@ Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 
 3. Deep Learning은 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 학습을 통해 배운다. 이를 수식으로 보면 ![equation](https://latex.codecogs.com/gif.latex?y%3D%20f%28x%3B%5Ctheta%2C%20w%29%20%3D%20%5Cphi%28x%3B%5Ctheta%29%5E%7BT%7Dw)으로 표현한다. ![equation](https://latex.codecogs.com/gif.latex?%5Ctheta)는 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 배울때 사용 되는 parameter이고 *w*는 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi%28x%29)에서 결과값을 산출할때 쓰이는 parameter이다. 딥 러닝에선 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)는 Hidden Layer라고 생각 할 수 있다. 이러한 방법은 3가지 방법들 중 유일하게 훈련시 볼록한(convex) 그래프가 되지 않지만, 이를 통해 얻을 수 있는 이점이 더 크다. ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 학습을 통해 배우는 방법은 위에 서술한 두가지 방법의 이점을 다 가지고 있다. ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 일반적인 함수(RBF)로 사용 할 경우 첫번째 방법과 유사하고, 개발자가 직접 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 구현하면 두번쨰 방법과 유사하다. 두번째 방법과 다른 점은 개발자가 정확한 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi) 함수를 정하지 않고 유사한 함수만 정해도 된다는 이점이 있다.
 
 ## Example: Learning XOR
+FeedForward network를 좀 더 이해하기 쉽게 XOR함수를 학습하는 과정을 설명 하면서 위의 내용을 정리해 보자. XOR함수는 두개의 입력값이 서로 다를 때만 1을 반환하고 서로 다를 경우 0을 반환하는 함수이다.
+
+입력값은 정리하면 ![equation](https://latex.codecogs.com/gif.latex?X%20%3D%20%7B%5B0%2C0%5D%2C%5B0%2C1%5D%2C%5B1%2C0%5D%2C%5B1%2C1%5D%7D)이고 모댈은 Linear 모델을 사용 하여 ![equation](https://latex.codecogs.com/gif.latex?f%28x%3Bw%2Cb%29%20%3D%20xw&plus;b)으로 수식을 정의 한다. loss/cost 함수는 ![equation](https://latex.codecogs.com/gif.latex?c%28%5Ctheta%29%20%3D%20%5Cfrac%7B1%7D%7B4%7D%5Csum_%7Bx%5Cin%20X%7D%28f%5E%7B*%7D%28x%29%20-%20f%28x%3B%5Ctheta%20%29%29%5E%7B2%7D)으로 정의 한다. 
+
 
 ## Gradient-based Learning
 Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선형(nonlinearity) 특징 때문에 cost 함수의 그래프가 convex형태로 나타나지 않는다는 점이다. 결국 
