@@ -66,4 +66,17 @@ Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선
 Deep 신경망에선 어떤 cost 함수를 사용하는지가 중요하다. 다행이도 신경망에서 사용되는 cost함수는 linear 모델이나 다른 parameter를 사용하는 모델이 사용하는 cost 함수와 유사하거나 같다. 대부분 입력값에 대한 결과값의 확율분포를 정하고 최대가능도(Maximum likelihood) 원리를 사용하여 계산한다. 또한, 좀더 쉽게 계산하는 방법으로 결과값의 전체 확율 분포를 계산해서 결과값에 대한 입력값 조건부 확율을 계산하기도 한다.
 
 #### 최대가능도(Maximum likelihood)를 사용한 조건부 확율(Conditional Distribution) 학습
+현대 대부분의 신경망은 최대가능도 조건부확율을 사용하여 훈련을 한다. 최대가능도 조건불 확율을 간단히 설명하면 negative log-likelihood로 표현 할 수 있다. 익숙한 표현으론 negative cross-entropy이다. 수식으로 표현하면,
+
+![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20-%5Cboldsymbol%7BE%7D_%7Bx%2Cy%7Dlog_%7Bp_%7Bmodel%7D%7D%28y%7Cx%29)
+
+두가지 예로, Mean Square Error cost를 적용하면, 
+
+
+
+위의 함수를 쓴 수식 중 흔히 알고 있는 수식이 Logistic regression의 cost 함수이다:
+
+![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20-%5Csum%20ylog%28xw%29%29&plus;%20%281-y%29log%281-wx%29%29)
+
+최대가능도를 사용한 cost 함수의 장점은 각각의 모델에 맞춘 cost함수를 만들 필요성이 사라지는 것이다. 모델의 *p*(*y*|*x*)만 정해주면 cost함수를 바로 적용 할 수 있다. 
 
