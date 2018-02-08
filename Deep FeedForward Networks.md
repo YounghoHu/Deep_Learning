@@ -1,5 +1,5 @@
 # Deep FeedForward Networks
-**Deep FeedForward Networks**은 **feedforward neural networks**와 **Multilayer 		Perceptrons**(**MLP**)라는 명칭을 사용하기도 하며, 주어진 입력값 X에 대한 결과값 Y를 구하는 함수 *f* 를 계산할 때 사용된다. 예시로, Linear regression에서 y = *f*(x) 라고 정의 할때, *f*(x)=*W*x+*b*이고, Feedforward Networks는 *W*의 값을 배움으로 써 주어진 입력x에 대한 알맞는 결과값 y를 구할 수 있다. 
+**Deep FeedForward Networks**은 **feedforward neural networks**와 **Multilayer Perceptrons**(**MLP**)라는 명칭을 사용하기도 하며, 주어진 입력값 X에 대한 결과값 Y를 구하는 함수 *f* 를 계산할 때 사용된다. 예시로, Linear regression에서 y = *f*(x) 라고 정의 할때, *f*(x)=*W*x+*b*이고, Feedforward Networks는 *W*의 값을 배움으로 써 주어진 입력x에 대한 알맞는 결과값 y를 구할 수 있다. 
 
 FeedForward라고 불리는 이유는 입력값 x로 부터 함수 *f* 를 통해 결과값 y로 나올때 어떠한 정보들도 피드백(**Feedback**)되지 않기 때문이다. 만약 결과값 Y가 함수 *f* 에 연결되거나 함수 *f* 자체 내에서 Feedback이 사용된 경우 **Recurrent Neural Networks**로 정의된다. 
 
@@ -59,6 +59,11 @@ Hidden Layer에서 산출한 값을 결과값으로 표현하기 위해 Activati
 
 모든 입력값의 결과가 재대로 나왔다. 단순 Linear에선 0.5의 정확성이 였지만, Hidden Layer를 사용한 FeedForward Networks에선 100%의 정확성을 보여준다. 현실에선 위와 같이 정확한 *wight*와 *bias*값을 찾긴 불가능 하지만, **Gradient Descent**를 사용하면 높은 정확성을 기대 할 수 있다. 
 
-
 ## Gradient-based Learning
-Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선형(nonlinearity) 특징 때문에 cost 함수의 그래프가 convex형태로 나타나지 않는다는 점이다. 결국
+Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선형(nonlinearity) 특징 때문에 cost 함수의 그래프가 convex형태로 나타나지 않는다는 점이다. 결국 cost의 값이 매우 낮게 나오긴 하지만 linear 함수처럼 cost의 값이 0이 될 수는 없다. 또한, 신경망 모델에선 초기 parameter 값이 최종 결과값에 큰 영향을 미침으로 초기 값 설정을 알맞게 설정해야 한다.기본적으로 FeedForward Networks에선 weight값은 작은 무작위 값으로 설정하고 bias의 값은 0 또는 낮은 값으로 설정한다.
+
+### Cost 함수
+Deep 신경망에선 어떤 cost 함수를 사용하는지가 중요하다. 다행이도 신경망에서 사용되는 cost함수는 linear 모델이나 다른 parameter를 사용하는 모델이 사용하는 cost 함수와 유사하거나 같다. 대부분 입력값에 대한 결과값의 확율분포를 정하고 최대가능도(Maximum likelihood) 원리를 사용하여 계산한다. 또한, 좀더 쉽게 계산하는 방법으로 결과값의 전체 확율 분포를 계산해서 결과값에 대한 입력값 조건부 확율을 계산하기도 한다.
+
+#### 최대가능도(Maximum likelihood)를 사용한 조건부 확율(Conditional Distribution) 학습
+
