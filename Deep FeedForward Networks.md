@@ -103,4 +103,7 @@ Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수이
 
 불행히도, mean square error와 mean absolute error는 gradient-based 최적화시 안좋은 결과를 나타낸다. 이유는 이 두가지의 cost 함수를 사용 시 output units에서 gradients가 너무 작게 생성되어 학습이 재대로 이뤄지지 않는다. 그래서 *P*(y|x)의 전체 분포도가 필요하지 않는 상황에서도 위의 두 cost 함수보단 cross-entropy cost 함수를 더 많이 사용 한다.
 
-### Output Unit
+### 결과값 유닛 (Output Unit)
+cost 함수를 정하는 것은 output unit을 정하는 것과 상당히 밀첩한 관계가 있다. 보통, 데이터 분포도와 모델 분포도를 가지고 cross-entropy 함수를 사용 하여 cost 값을 구하고, 결과값을 어떻게 표현 하느냐에 따라 cross-entropy 함수의 유형이 정해진다. Layer를 설명 할때도 언급했듯이, 마지막 레이어가 output layer, hidden unit이 output unit이 될수 있고 output unit이 hidden unit이 될수 있다. 
+
+#### 가우시안 결과값 분포도를 위한 선형 Unit
