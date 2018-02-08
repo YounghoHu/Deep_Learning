@@ -125,3 +125,8 @@ sigmoid unit을 적용 하는 방법은 linear layer가 *z* = *wx* + *b*를 구�
 ![eq](https://latex.codecogs.com/gif.latex?P%28y%29%20%3D%20%5Cfrac%7Bexp%28yz%29%7D%7B%5Csum_%7B%7By%7D%27%3D0%7D%5E%7B1%7Dexp%28%7By%7D%27z%29%7D%2C)
 
 ![eq](https://latex.codecogs.com/gif.latex?P%28y%29%20%3D%20sigmoid%28%282y-1%29z%29)
+
+위의 수식에서 *z*는 *logit*이라 불린다. 또한 위의 수식에선 exponential을 사용 하기 때문에 최대가능도(maximum likelihood)를 사용 하면 cost 함수 -log*P*(y|x)안에 포함된 log가 sigmoid안에 들어있는 exponential를 중화 시켜 gradient-based 학습에 적합하다. Maximum likelihood cost 함수를 sigmoid에 적용 시키면 다음과 같다.
+
+![eq](https://latex.codecogs.com/gif.latex?C%28y%29%20%3D%20-log%28%5Csigma%20%28%282y-1%29z%29%29)
+
