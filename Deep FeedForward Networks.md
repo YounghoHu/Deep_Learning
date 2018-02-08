@@ -28,11 +28,29 @@ FeedForward network를 좀 더 이해하기 쉽게 XOR함수를 학습하는 과
 
 ![XOR graph](http://solarisailab.com/wp-content/uploads/2017/05/xor_limitation.gif)
 
-AND와 OR의 경우 직선 하나로 두개의 결과값(0,1)을 구분 할수 있지만, XOR의 경우 직선 하나로 두개의 결과값을 구분 할 수 없다. 직선 하나로 구분 시 0과 1이 모두 들어 있기 때문에 정확성이 0.5일 수 밖에 없다. 이를 해결하기 위해 Hidden Layer 하나를 사용한 feedforward network를 구성해 보자. 이를 수식으로 표현하면, 
+AND와 OR의 경우 직선 하나로 두개의 결과값(0,1)을 구분 할수 있지만, XOR의 경우 직선 하나로 두개의 결과값을 구분 할 수 없다. 직선 하나로 구분 시 0과 1이 모두 들어 있기 때문에 정확성이 0.5일 수 밖에 없다. 이를 해결하기 위해 Hidden Layer 하나를 사용한 feedforward network를 구성해 보자. 이를 수식으로 표현하면 다음과 같다. 
 
 ![equation](https://latex.codecogs.com/gif.latex?y%20%3D%20f%28h%3BW%2Cb%29%2C%20h%20%3D%20f%28x%3Bw%2C%20c%29)
 
-![equation](https://latex.codecogs.com/gif.latex?%5Ctherefore%20y%20%3D%20f%28h%3BW%2Cb%29%2C%20h%20%3D%20f%28x%3Bw%2C%20c%29)
+![equation](https://latex.codecogs.com/gif.latex?%5Ctherefore%20y%20%3D%20f%5E%7B%282%29%7D%28f%5E%7B%281%29%7D%28x%3Bw%2Cc%29%3BW%2Cb%29)
+
+Hidden Layer에서 산출한 값을 결과값으로 표현하기 위해 Activation 함수가 필요하다. **Hyper Tangent**(**tanh**) 또는 **Rectified linear Unit**(**ReLU**)함수가 가장 많이 쓰인다. 이 예제에서는 ReLU를 사용해서 결과값을 구하였다.
+
+이제 만들어진 nonLinear 모델을 계산하여 결과값이 정확한지 확인 해보자.
+각각의 wight와 bias를 정의하면 다음과 같다.
+![equation](https://latex.codecogs.com/gif.latex?X%3D%5Cbegin%7Bbmatrix%7D%200%20%26%200%5C%5C%200%20%26%201%5C%5C%201%20%26%200%5C%5C%201%20%26%201%20%5Cend%7Bbmatrix%7D%2C%20w%3D%5Cbegin%7Bbmatrix%7D%201%20%26%201%5C%5C%201%20%26%201%20%5Cend%7Bbmatrix%7D%2C%20W%3D%5Cbegin%7Bbmatrix%7D%201%20%5C%5C%20-2%20%5Cend%7Bbmatrix%7D%2C%20c%3D%5Cbegin%7Bbmatrix%7D%200%5C%5C-1%20%5Cend%7Bbmatrix%7D)
+
+먼저 *h*를 계산하면 
+
+![equation](https://latex.codecogs.com/gif.latex?xw%3D%5Cbegin%7Bbmatrix%7D%200%20%26%200%5C%5C%201%20%26%201%5C%5C%201%20%26%201%5C%5C%202%20%26%202%20%5Cend%7Bbmatrix%7D)
+
+구한 값에 c를 더하면,
+
+![equation](https://latex.codecogs.com/gif.latex?xw%20&plus;%20c%3D%5Cbegin%7Bbmatrix%7D%200%20%26%20-1%5C%5C%201%20%26%200%5C%5C%201%20%26%200%5C%5C%202%20%26%201%20%5Cend%7Bbmatrix%7D)
+
+마지막으로 h에 W를 곱하면, 
+
+![equation](https://latex.codecogs.com/gif.latex?hW%3D%5Cbegin%7Bbmatrix%7D%200%20%5C%5C%201%20%5C%5C%201%20%5C%5C%200%20%5Cend%7Bbmatrix%7D)
 
 
 
