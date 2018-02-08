@@ -72,9 +72,11 @@ Deep 신경망에선 어떤 cost 함수를 사용하는지가 중요하다. 다�
 
 두가지 예로, Mean Square Error cost를 적용하면, 
 
+![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20%5Cfrac%7B1%7D%7B2%7D%5Cboldsymbol%7BE%7D_%7Bx%2Cy%7D%7C%7Cy%20-%20%5Cboldsymbol%7Bf%7D%28x%3B%5Ctheta%20%29%29%7C%7C%5E%7B2%7D%20&plus;%20const)
 
+이때 const는 Gaussian 분포도에 따라 변하며 분수 또한 ![equation](https://latex.codecogs.com/gif.latex?%5Ctheta)에 영향을 받지 않아, 위의 식과 동일하다 볼 수 있다.
 
-위의 함수를 쓴 수식 중 흔히 알고 있는 수식이 Logistic regression의 cost 함수이다:
+Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수 이다:
 
 ![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20-%5Csum%20ylog%28xw%29%29&plus;%20%281-y%29log%281-wx%29%29)
 
