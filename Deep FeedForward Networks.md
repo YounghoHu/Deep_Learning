@@ -133,5 +133,10 @@ sigmoid unit을 적용 하는 방법은 linear layer가 *z* = *wx* + *b*를 구�
 위의 식에 SoftPlus 함수를 적용 시키면,
 
 ![eq](https://latex.codecogs.com/gif.latex?C%28y%29%20%3D%20%5Czeta%20%28%282y-1%29z%29%2C)
-
 where, ![eq](https://latex.codecogs.com/gif.latex?%5Czeta%20%28x%29%20%3D%20log%281%20&plus;%20exp%28x%29%29)
+
+결국, (1-2y)z 값이 큰 음수가 될 시 cost의 값이 0에 가까워 지고 다르게 설명하면 예측한 값이 알맞는 값일 때만 cost의 값이 0에 가까워 짐으로서 학습에 성공 할수 있다. 또한, 다른 cost 함수를 사용 시 결국 sigmoid(z)의 값이 큰 음수 일 때만 cost의 값도 0에 가까워 지고 큰 양수 일 시 1에 가까워지는 방법으로 학습에 성공 할 수 있고 이러한 이유에서 maximum likelihood를 sigmoid Unit에 사용하는 것을 선호한다.
+
+마지막으로, 실제 구현시, 0과 1을 포함[0,1]하는 범위 대신 0과 1을 포함하지 않는 (0,1) 범위를 설정해야 한다. 만약 sigmoid 함수가 0이 되어 버리면, 알고리즘은 음수 무한대의 값이 되기때문에 계산에 문제가 발생한다.
+
+#### Multinoulli 분포를 사용한 Softmax Unit
