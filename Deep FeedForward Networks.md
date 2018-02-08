@@ -65,7 +65,7 @@ Linear 모델과 신경망 모델의 가장 큰 차이점은 신경망의 비선
 ### Cost 함수
 Deep 신경망에선 어떤 cost 함수를 사용하는지가 중요하다. 다행이도 신경망에서 사용되는 cost함수는 linear 모델이나 다른 parameter를 사용하는 모델이 사용하는 cost 함수와 유사하거나 같다. 대부분 입력값에 대한 결과값의 확율분포를 정하고 최대가능도(Maximum likelihood) 원리를 사용하여 계산한다. 또한, 좀더 쉽게 계산하는 방법으로 결과값의 전체 확율 분포를 계산해서 결과값에 대한 입력값 조건부 확율을 계산하기도 한다.
 
-#### 최대가능도(Maximum likelihood)를 사용한 조건부 확율(Conditional Distribution) 학습
+#### 최대가능도(Maximum likelihood)를 사용한 조건부 분포도(Conditional Distribution) 학습
 현대 대부분의 신경망은 최대가능도 조건부확율을 사용하여 훈련을 한다. 최대가능도 조건불 확율을 간단히 설명하면 negative log-likelihood로 표현 할 수 있다. 익숙한 표현으론 negative cross-entropy이다. 수식으로 표현하면,
 
 ![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20-%5Cboldsymbol%7BE%7D_%7Bx%2Cy%7Dlog_%7Bp_%7Bmodel%7D%7D%28y%7Cx%29)
@@ -76,11 +76,30 @@ Deep 신경망에선 어떤 cost 함수를 사용하는지가 중요하다. 다�
 
 이때 const는 Gaussian 분포도에 따라 변하며 분수 또한 ![equation](https://latex.codecogs.com/gif.latex?%5Ctheta)에 영향을 받지 않아, 위의 식과 동일하다 볼 수 있다.
 
-Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수 이다:
+Logistic regression의 cost 함수 또한 최대가능도를 활용한 함수이다:
 
 ![equation](https://latex.codecogs.com/gif.latex?C%28%5Ctheta%20%29%20%3D%20-%5Csum%20ylog%28xw%29%29&plus;%20%281-y%29log%281-wx%29%29)
 
-최대가능도를 사용한 cost 함수의 장점은 각각의 모델에 맞춘 cost함수를 만들 필요성이 사라지는 것이다. 모델의 *p*(*y*|*x*)만 정해주면 cost함수를 바로 적용 할 수 있다. 또한, log 함수를 사용 함으로 써 지수함수(exponential function)을 사용한 결과값 산출에서 발생되는 vanishing gredient 문제를 해결할 수 있다.
+최대가능도를 사용한 cost 함수의 장점은 각각의 모델에 맞춘 cost함수를 만들 필요성이 사라지는 것이다. 모델의 *P*(*y*|*x*)만 정해주면 cost 함수로 바로 적용 할 수 있다. 또한, log 함수를 사용 함으로 써 지수함수(exponential function)을 사용한 결과값 산출에서 발생되는 vanishing gredient 문제를 해결할 수 있다.
 
-#### 조건부 확율 학습
+#### 조건부 통계(Conditional Statistics) 학습
+주어진 입력값으로 결과값의 조건부 통계를 알고 싶을때 사용 되는 방법을 설명한다. 예를 들어 입력값 하나를 주어졌을때 결과값의 평균을 구하고자 할때가 있다. 특정한 특징을 parameter로 사용 하는 것이 아닌 연속성(countinuity) 또는 경계(boundedness)와 같은 특징을 사용하여 신경망의 cost 함수가 범함수(**Functional**)의 역활을 하는 방식으로 생각 할 수 있다. 정리하면, 범함수란 함수로부터 실제값을 구하는 함수로 생각 할수 있고 딥 러닝에서 parameter를 선택해 학습하는 개념이 아닌 함수를 선택해 학습하는 개념으로 생각 할 수 있다. cost 범함수를 설계할 때 cost의 값이 우리가 원하는 특정 함수일 때 최소가 될 수 있도록 한다. 최적화 문제(optimization)를 해결 하기 위해선 변분법(**Calculus of variations**)가 필요하다. 아래에서 두가지 죄적화 방법을 설명 하겠다.
 
+1. 각 입력값 x로 결과값의 평균을 예측하는 함수를 구하는 방법
+![equation](https://latex.codecogs.com/gif.latex?f%5E%7B*%7D%20%3D%20argmin%5Cboldsymbol%7BE%7D_%7Bx%2Cy%5Csim%20P_%7Bdata%7D%7D%7C%7Cy%20-%20f%28x%29%29%7C%7C%5E%7B2%7D)
+
+또는 
+
+![equation](https://latex.codecogs.com/gif.latex?f%5E%7B*%7D%28x%29%20%3D%20%5Cboldsymbol%7BE%7D_%7By%5Csim%20P_%7Bdata%7D%28y%7Cx%29%7D%5By%5D)
+
+위의 식으로 표현 되며, mean squared error cost함수를 최소화 하면 각 입력값 x에 대한 y의 평균값을 예측하는 함수가 된다.
+
+2. 각 입력값 x로 결과값의 중앙값(median)을 예측하는 함수를 구하는 방법
+
+![equation](https://latex.codecogs.com/gif.latex?f%5E%7B*%7D%20%3D%20argmin%5Cboldsymbol%7BE%7D_%7By%5Csim%20P_%7Bdata%7D%7D%5Cleft%20%5C%7C%20y-f%28x%29%29%20%5Cright%20%5C%7C)
+
+위의 식은 각 입력값 x에 대한 결과값 y의 중앙값을 예측하는 함수이다. 이 cost 함수는 **mean absolute error**라 부른다.
+
+불행히도, mean square error와 mean absolute error는 gradient-based 최적화시 안좋은 결과를 나타낸다. 이유는 이 두가지의 cost 함수를 사용 시 output units에서 gradients가 너무 작게 생성되어 학습이 재대로 이뤄지지 않는다. 그래서 *P*(y|x)의 전체 분포도가 필요하지 않는 상황에서도 위의 두 cost 함수보단 cross-entropy cost 함수를 더 많이 사용 한다.
+
+### Output Unit
