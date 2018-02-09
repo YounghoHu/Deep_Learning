@@ -140,17 +140,32 @@ where, ![eq](https://latex.codecogs.com/gif.latex?%5Czeta%20%28x%29%20%3D%20log%
 마지막으로, 실제 구현시, 0과 1을 포함[0,1]하는 범위 대신 0과 1을 포함하지 않는 (0,1) 범위를 설정해야 한다. 만약 sigmoid 함수가 0이 되어 버리면, 알고리즘은 음수 무한대의 값이 되기때문에 계산에 문제가 발생한다.
 
 #### Multinoulli 분포를 사용한 Softmax Unit
-Softmax unit은 *n*개의 discrete 변수의 확율 분포를 구할 때 사용된다. 위에서 설명한 sigmoid unit의 일반화된 방법이라 생각 할 수 있다. Softmax에서 분류한 각 개채안에서 소분류가 필요하면 Softmax unit안에 Softmax unit을 포함시킬 수 있다. 
+Softmax unit은 *n*개의 discrete 변수의 확율 분포를 구할 때 사용된다. 위에서 설명한 sigmoid unit의 일반화된 방법이라 생각 할 수 있다. Softmax에서 분류한 각 개채안에서 소분류가 필요하면 Softmax unit안에 Softmax unit을 포함시킬 수 있다.
 
 Sigmoid unit에서는 y = *P*(y =1 | x)이면, Softmax Unit에선 아래와 같이 표현한다.
 
  ![eq](https://latex.codecogs.com/gif.latex?y_%7Bi%7D%20%3D%20P%28y%20%3D%20i%20%7C%20x%29)
  
-위의 식에서 각각의 y의 값은 0과 1 사이의 값이여야 하며, 총합이 1이 되어야 한다. 먼저 Sigmoid unit과 같이 liner layer를 사용 하여 *z*값을 구한 후,
+위의 식에서 각각의 y의 값은 0과 1 사이의 값이여야 하며, 총합이 1이 되어야 한다. 먼저 Sigmoid unit과 같이 linear layer를 사용 하여 *z*값을 구한 후,
 
 ![eq](https://latex.codecogs.com/gif.latex?z%20%3D%20Wh%20&plus;%20b%2C) where
 ![eq](https://latex.codecogs.com/gif.latex?z_%7Bi%7D%20%3D%20log%5Ctilde%7BP%7D%28y%20%3D%20i%20%7C%20x%29)
 
 Softmax 함수에 *z*를 대입하여 원하는 y의 값을 산출한다.
+
+![eq](https://latex.codecogs.com/gif.latex?softmax%28z%29_%7Bi%7D%20%3D%20%5Cfrac%7Bexp%28z_%7Bi%7D%29%7D%7B%5Csum_%7Bj%7Dexp%28z_i%29%7D)
+
+Logistic sigmoid에서 maximum log-likelihood를 사용할 시 학습이 잘 이루어 진것 처럼, softmax에서도 maximum log-likelihood를 사용 하면, softmax에 포함되어 있는 exponential을 log로 중화시켜 학습이 잘 이루어 진다. 
+
+![eq](https://latex.codecogs.com/gif.latex?log%20softmax%28z%29_%7Bi%7D%20%3D%20z_%7Bi%7D%20-%20log%5Csum_%7Bj%7Dexp%28z_%7Bj%7D%29)
+
+첫 변수 z는 cost 함수에 직접적인 영향을 미치고 값이 줄어들지 않기 때문에 두번째 변수가 아무리 작은 수가 되어도 학습이 가능하다. 위의 수식을 생각 해보면, 두번째 변수인 ![eq](https://latex.codecogs.com/gif.latex?log%5Csum_%7Bj%7Dexp%28z_%7Bj%7D%29)는 ![eq](https://latex.codecogs.com/gif.latex?max_%7Bj%7Dz_%7Bj%7D)와 거의 같다고 생각할수 있다. 그 이유는 z의 최대값 보다 확실히 작은 x의 값을 exponential에 대입 시 exp(x)값은 의미가 없어 진다. 따라서, 틀린 예상 값을 구했을시 두번째 변수는 의미가 없어지며, 첫번째 변수 z만 남으면서 cost값이 커진다. 반대로, 알맞은 예상 값을 구했을 시 첫변째 변수인 z와 두변째 변수인 ![eq](https://latex.codecogs.com/gif.latex?log%5Csum%20_%7Bj%7Dexp%28z_%7Bj%7D%29%20%5Capprox%20max_%7Bj%7Dz_%7Bj%7D%20%3D%20z_%7Bi%7D)가 서로 상쇄되어 cost 값이 낮아 진다. 
+
+maximum likelihood는 consistent estimator이기 때문에, 모델이 훈련 분포를 전부 수용 할 수만 있다면, 적확한 계산이 가능하지만, 실제 구현 시 모델의 수용도의 한계와 불완전한 optimization 때문에 정확한 값이 아닌 비슷하거나 유사한 값이 산출된다.
+
+또한, log-likelihood가아닌 다른 방식의 함수(squared error)를 적용 시 softmax안에 포함되어 있는 exponential을 상쇄시키지 못하게 되고 vanishing gredient로 인해 훈련이 재대로 이루어 지지 않은다.
+
+#### Other Output Types
+위에서 서술한 linear, sigmoid, softmax unit이 가장 많이 사용 되며, maximum likelihood의 원리를 사용하면 효과적인 cost 함수를 설계할 수 있다. 일반적으로 conditional distribution ![eq](https://latex.codecogs.com/gif.latex?P%28y%7Cx%3B%5Ctheta%20%29)를 정의하면 maximum log-likelihood를 사용 하여 cost 함수를 만들때 ![eq](https://latex.codecogs.com/gif.latex?-logP%28y%7Cx%3B%5Ctheta%20%29)를 사용 한다. 또한 신경망에선 ![eq](https://latex.codecogs.com/gif.latex?f%28x%3B%5Ctheta%20%29)의 값을 y에 대한 예측값으로 바로 사용 되는 것이 아닌, ![eq](https://latex.codecogs.com/gif.latex?f%28x%3B%5Ctheta%20%29%20%3D%20w)를 parameter로 사용 하여 실제값 y를 잘 예측하는 함수를 찾는 방법을 사용 한다. 이떄 cost 함수는 maximum likelihood에 따라![eq](https://latex.codecogs.com/gif.latex?-logP%28y%3Bw%28x%29%29)를 사용 할 수 있다.
 
 ![eq](https://latex.codecogs.com/gif.latex?softmax%28z%29_%7Bi%7D%20%3D%20%5Cfrac%7Bexp%28z_%7Bi%7D%29%7D%7B%5Csum_%7Bj%7Dexp%28z_i%29%7D)
