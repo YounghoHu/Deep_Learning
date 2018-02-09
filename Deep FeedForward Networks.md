@@ -168,4 +168,3 @@ maximum likelihood는 consistent estimator이기 때문에, 모델이 훈련 분
 #### Other Output Types
 위에서 서술한 linear, sigmoid, softmax unit이 가장 많이 사용 되며, maximum likelihood의 원리를 사용하면 효과적인 cost 함수를 설계할 수 있다. 일반적으로 conditional distribution ![eq](https://latex.codecogs.com/gif.latex?P%28y%7Cx%3B%5Ctheta%20%29)를 정의하면 maximum log-likelihood를 사용 하여 cost 함수를 만들때 ![eq](https://latex.codecogs.com/gif.latex?-logP%28y%7Cx%3B%5Ctheta%20%29)를 사용 한다. 또한 신경망에선 ![eq](https://latex.codecogs.com/gif.latex?f%28x%3B%5Ctheta%20%29)의 값을 y에 대한 예측값으로 바로 사용 되는 것이 아닌, ![eq](https://latex.codecogs.com/gif.latex?f%28x%3B%5Ctheta%20%29%20%3D%20w)를 parameter로 사용 하여 실제값 y를 잘 예측하는 함수를 찾는 방법을 사용 한다. 이떄 cost 함수는 maximum likelihood에 따라![eq](https://latex.codecogs.com/gif.latex?-logP%28y%3Bw%28x%29%29)를 사용 할 수 있다.
 
-![eq](https://latex.codecogs.com/gif.latex?softmax%28z%29_%7Bi%7D%20%3D%20%5Cfrac%7Bexp%28z_%7Bi%7D%29%7D%7B%5Csum_%7Bj%7Dexp%28z_i%29%7D)
