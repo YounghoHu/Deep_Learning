@@ -183,5 +183,25 @@ maxout unit은 k 개수의 weight를 사용 하기 때문에 generalization이 �
 
 #### Logistic Sigmoid와 Hyperbolic Tangent(tanh)
 Logistic Sigmoid는 ReLu를 사용 하기 이전에 가장 많이 쓰였던 activation 함수이다. Hyerboli tangent도 logistic sigmoid와 밀접한 관계가 있다: tanh(x) = 2sigmoid(2z) - 1. 앞서 본 것처럼 sigmoid는 z값이 큰 양수일 경우 산출된 값도 커지고 z값이 큰 음수일 경우 산출된 값이 작아진다. 또한 z 값이 0 근처일 경우에만 결과값에 큰 영향이 있다. z값에 따라 크게 변하는 결과값 때문에 hidden 레이어안에서 sigmoid를 쓰는걸 권하지 않는다.Sigmoid와 같은 함수가 꼭 필요한 상황일 경우 tanh을 사용 하는 것이 더 효과적이다. 
-
 ### Other Hidden Unit
+미분이 가능한 함수를 hidden unit으로 쓸 경우 대부분 좋은 결과값을 보여준다. 예로, cos 함수를 사용 해서 hidden layer를 설계하여, h = cos(*Wx* + *b*), MINIST데이터를 학습 시켜본 결과 적확성이 99%이상의 정확성을 보여주었다. 이처럼 다양한 함수를 hidden layer에서 사용 할 수 있지만 논문에 서술 되지 않은 이유는, 새로운 함수를 사용시 이전보다 크게 성능 향상을 보이지 않으면 크게 관심을 받지 못하기 때문이다. 위의 세가지 함수보단 덜 쓰이지만 흔한 함수를 소개 하겠다.
+
+* **Radial basis function**
+
+![eq](https://latex.codecogs.com/gif.latex?h%20%3D%20exp%28-%5Cfrac%7B1%7D%7B%5Csigma%20%5E%7B2%7D%7D%5Cleft%20%5C%7C%20W-x%20%5Cright%20%5C%7C%5E%7B2%7D%29)
+
+위의 수식으로 표현하며, x가 w값과 비슷 해지는 경우 활성화되며, 대부분의 x의 값에 대해 0을 반환 하기 때문에 optimization이 힘들다.
+
+* **SoftPlus**
+
+![eq](https://latex.codecogs.com/gif.latex?g%28z%29%20%3D%20%5Czeta%20%28z%29%20%3D%20log%281&plus;%20e%5E%7Bz%7D%29)
+
+위의 수식으로 표현하며, ReLu의 순화된 함수로 생각할 수 있다. 하지만 ReLu가 더 성능이 좋다는 연구 결과에 따라 SoftPlus는 잘 사용 되지 않는다.
+
+* **Hard Tanh**
+
+![eq](https://latex.codecogs.com/gif.latex?g%28z%29%20%3D%20max%28-1%2Cmin%281%2Cz%29%29)
+
+위의 수식으로 표현하며, tanh와 유사하지만, 경계가 다르다.
+
+### Architecture 설계
