@@ -11,7 +11,7 @@ FeedForward라고 불리는 이유는 입력값 x로 부터 함수 *f* 를 통�
 Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 또는 convex형태의 그래프일 때 안정적이고 효과적인 결과값을 구할수있지만, 일차 함수에서만 사용 할 수 있고, 결국 linear 모델은 두개의 입력값 사이의 관계를 이해할 수 없다는 단점을 가지고 있다. 이를 극복하기 위해 linear 모델에 입력값 x를 바로 대입하지 않고 x를 커널 함수(**Kernel function**) ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)에 대입하여 nonlinear로 변경 후 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi%28x%29)를 모델의 입력값으로 대입한다. 이 함수 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 nonlinear transformation이라 한다.
 
 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 결정하는 3가지 방법이 존재한다:
-1. Radial Basis Function(RBF) kernel과 같이 커널 머신에서 암묵적으로 사용하는 일반적인 함수를 사용한다. 이 함수의 차원이 크면 훈련 데이터(training set)를 전부 수용 할 수 있지만 실험 데이터(test set)에선 일반화가 재대로 이뤄지지 않는다. 이러한 함수들은 local Smoothness에만 기준을 두었기 때문에 과거의 정보를 충분히 내재하지 못하고 복잡한 문제를 해결하지 못하는 단점이 존재한다.
+1. **Radial Basis Function**(**RBF**) kernel과 같이 커널 머신에서 암묵적으로 사용하는 일반적인 함수를 사용한다. 이 함수의 차원이 크면 훈련 데이터(training set)를 전부 수용 할 수 있지만 실험 데이터(test set)에선 일반화가 재대로 이뤄지지 않는다. 이러한 함수들은 local Smoothness에만 기준을 두었기 때문에 과거의 정보를 충분히 내재하지 못하고 복잡한 문제를 해결하지 못하는 단점이 존재한다.
 
 2. 다른 방법으론 개발자들이 직접 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 설계한다. Deep learning이 나오기 이전 기계학습에서 많은 개발자들이 사용하던 방법이다. 각 분야의 전문가들이 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 직접 구현해야 하는 단점이 존재한다.
 
@@ -128,7 +128,7 @@ sigmoid unit을 적용 하는 방법은 linear layer가 *z* = *wx* + *b*를 구�
 
 위의 수식에서 *z*는 *logit*이라 불린다. 또한 위의 수식에선 exponential을 사용 하기 때문에 최대가능도(maximum likelihood)를 사용 하면 cost 함수 -log*P*(y|x)안에 포함된 log가 sigmoid안에 들어있는 exponential를 중화 시켜 gradient-based 학습에 적합하다. Maximum likelihood cost 함수를 sigmoid에 적용 시키면 다음과 같다.
 
-![eq](https://latex.codecogs.com/gif.latex?C%28y%29%20%3D%20-log%28%5Csigma%20%28%282y-1%29z%29%29)
+![eq](https://latex.codecogs.com/gif.latex?C%28y%29%20%3D%20-log%5Csigma%20%28%282y-1%29z%29)
 
 위의 식에 SoftPlus 함수를 적용 시키면,
 
@@ -155,7 +155,7 @@ Softmax 함수에 *z*를 대입하여 원하는 y의 값을 산출한다.
 
 ![eq](https://latex.codecogs.com/gif.latex?softmax%28z%29_%7Bi%7D%20%3D%20%5Cfrac%7Bexp%28z_%7Bi%7D%29%7D%7B%5Csum_%7Bj%7Dexp%28z_i%29%7D)
 
-Logistic sigmoid에서 maximum log-likelihood를 사용할 시 학습이 잘 이루어 진것 처럼, softmax에서도 maximum log-likelihood를 사용 하면, softmax에 포함되어 있는 exponential을 log로 중화시켜 학습이 잘 이루어 진다. 
+Logistic sigmoid에서 maximum log-likelihood를 사용할 시 학습이 잘 이루어 진것 처럼, softmax에서도 maximum log-likelihood를 사용 하면, softmax에 포함되어 있는 exponential을 log로 상쇄시켜 학습이 잘 이루어 진다. 
 
 ![eq](https://latex.codecogs.com/gif.latex?log%20softmax%28z%29_%7Bi%7D%20%3D%20z_%7Bi%7D%20-%20log%5Csum_%7Bj%7Dexp%28z_%7Bj%7D%29)
 
@@ -165,6 +165,23 @@ maximum likelihood는 consistent estimator이기 때문에, 모델이 훈련 분
 
 또한, log-likelihood가아닌 다른 방식의 함수(squared error)를 적용 시 softmax안에 포함되어 있는 exponential을 상쇄시키지 못하게 되고 vanishing gredient로 인해 훈련이 재대로 이루어 지지 않은다.
 
-#### Other Output Types
-위에서 서술한 linear, sigmoid, softmax unit이 가장 많이 사용 되며, maximum likelihood의 원리를 사용하면 효과적인 cost 함수를 설계할 수 있다. 일반적으로 conditional distribution ![eq](https://latex.codecogs.com/gif.latex?P%28y%7Cx%3B%5Ctheta%20%29)를 정의하면 maximum log-likelihood를 사용 하여 cost 함수를 만들때 ![eq](https://latex.codecogs.com/gif.latex?-logP%28y%7Cx%3B%5Ctheta%20%29)를 사용 한다. 또한 신경망에선 ![eq](https://latex.codecogs.com/gif.latex?f%28x%3B%5Ctheta%20%29)의 값을 y에 대한 예측값으로 바로 사용 되는 것이 아닌, ![eq](https://latex.codecogs.com/gif.latex?f%28x%3B%5Ctheta%20%29%20%3D%20w)를 parameter로 사용 하여 실제값 y를 잘 예측하는 함수를 찾는 방법을 사용 한다. 이떄 cost 함수는 maximum likelihood에 따라![eq](https://latex.codecogs.com/gif.latex?-logP%28y%3Bw%28x%29%29)를 사용 할 수 있다.
+### Hidden Units
+Hidden units을 설계하는 방법은 학계에서 활발히 연구 중이고 아직까지 학문적으로 완벽한 설계가 없다. ReLu를 많이 사용 하긴 하지만, 다른 unit들도 많고 어떠한 상황에서 어떤 unit을 사용 할지 정해진 기준이 없다. 실제 적용시 어떤 unit이 좋은 결과를 나타낼지 예상이 불가능하다. 
 
+또한, 몇몇의 hidden unit은 모든 입력값에 대해 이론적으로 미분을 할 수 없지만, 실제 적용 시 학습에 문제가 되지 않는다. 예를 들어, ReLu, g(x) = [0,x], 0에서 미분이 불가능 하지만 실제 훈련 알고리즘에선 정확히 local minimum에 도달하길 기대하지 않고, 유사한 값에 머물기 때문에 기울기가 0이 될지 않는다. 이론적으론 왼쪽 기울기와 오른쪽 기울기가 같아야 미분 할 수 있다고 정의 한다. ReLu에선 왼쪽기울기는 0 오른쪽 기울기는 1이되며, 이론적으로 미분이 불가능 하다고 정의 되지만, g(0) 이 될 시 실제값이 0이 아닌 0에 근접한 작은 소수를 내림값으로 표현해 0으로 표기된다.
+
+대부분의 Hidden Unit은 입력값 x를 받아서 z = *Wx* + *b*를 계산 후 nonlinear 함수 g(z)를 적용 한 값을 다른 레이어로 보낸다. Hidden unit을 구분 하는 방법은 어떤 g(x)함수를 쓰냐에 따라 달라진다.
+
+#### Rectified linear Unit(ReLu)
+ReLu의 수식은 g(x) =  max{0, x}이고 Linear 함수와 유사하기 때문에 optimization을 하기 쉽다. 차이점은 linear 함수는 결과값이 음수 무한대 부터 양수 무한대까지 이지만, ReLu는 0부터 양수 무한대까지 여서 이 unit이 활성화 되어 있을시 큰값이 유지 된다. 
+
+ReLu의 약점으로는 activation이 0일 경우 학습이 되지 않는다. 이를 해결하기 위해 여러 generalization은 gradient가 0이 되지 않게 설정한다. 세가지 예로, z < 0: h = g(z,a) = max(0,z) + amin(0,z)일 때, **Absolute value Rectification**은 a = -1로 정해서 g(z) = |z|가 될 수 있도록 하였고. **Leaky ReLu**는 a를 작은 소수, 0.01,로 고정하여 0보다 작은수가 될 수 있도록 하였고, **Parametric Relu** 또는 **PReLu**는 a를 학습 시키는 방법을 사용하여 generalization을 하였다.
+
+**Maxout unit**은 위의 세가지 예시처럼 g(z)를 generalization을 하기보단, z를 k 그룹으로 나누어 각각의 maxout unit이 각 k 그룹에서의 최대값을 결과값으로 나타낸다. 대표적인 예로, Convolutional Networks에서 Max-Pooling layer로 쓰인다. Maxout unit은 정확한 linear and convex 함수를 학습할 수 있으며, units간의 관계를 배우기 보단, activation 함수 자체를 학습 하는 개념이다. 일반적으론 입력값을 한개의 hidden layer를 통해 결과값을 산출 하는 반면, Maxout unit은 두개의 레이어를 사용한다: affine과 maxout. Affine function은 activation function이 존재하기보단, 입력값에 각각의 weight를 곱한 후 더하는 형식이고, maxout function은 affine의 출력값들중 가장 큰수를 결과값으로 나타낸다. 
+
+maxout unit은 k 개수의 weight를 사용 하기 때문에 generalization이 더 필요하지만, training set이 많고 각 unit당 입력 개수가 작을 경우 generalization을 하지 않아도 잘 작동된다. 또한, maxout시 계산된 결과의 최대값을 그대로 가져오기 때문에 과거에 훈련시켰던 정보를 잊어버리는**catastrophic forgetting** 효과를 제거 할 수 있다.
+
+#### Logistic Sigmoid와 Hyperbolic Tangent(tanh)
+Logistic Sigmoid는 ReLu를 사용 하기 이전에 가장 많이 쓰였던 activation 함수이다. Hyerboli tangent도 logistic sigmoid와 밀접한 관계가 있다: tanh(x) = 2sigmoid(2z) - 1. 앞서 본 것처럼 sigmoid는 z값이 큰 양수일 경우 산출된 값도 커지고 z값이 큰 음수일 경우 산출된 값이 작아진다. 또한 z 값이 0 근처일 경우에만 결과값에 큰 영향이 있다. z값에 따라 크게 변하는 결과값 때문에 hidden 레이어안에서 sigmoid를 쓰는걸 권하지 않는다.Sigmoid와 같은 함수가 꼭 필요한 상황일 경우 tanh을 사용 하는 것이 더 효과적이다. 
+
+### Other Hidden Unit
