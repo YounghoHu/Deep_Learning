@@ -244,7 +244,7 @@ universal approximation theorem에서는 학습 시키고 싶은 어떠한 함�
 대채로 신경망은 graph적인 방식으로 표현한다. graph란 노드(node)와 노드를 연결시키는 구조로 표현 하는데, 신경망에서의 노드는 variable로 생각할 수 있다. 이 variable은 상수, vector, tensor,matrix 또는 다른 종류의 값이 될수 있다. 또한 opartion이라는 표현을 사용 하는데. operation이란 한개 또는 여러개의 variable을 대입 시키는 함수이다. 전반적인 관점에서 computational graph를 보면, 입력값 노드에서 operation노드로 입력값을 대입 시켜 나온 결과값을 결과값 노드에 저장 한다라고 생각할 수 있다. 
 
 #### Chain Rule of Calculus
-Chain rule of calculus란 다른 함수의 미분값이 포함된 함수의 미분을 하는 방법이다. 이때 다른 함수의 미분값은 이미 알고 있는 상태이다. 예를 들어, y = g(x) 와  z = f(g(z)) = f(y)라고 가정할 때, z에대한 x의 미분값으로 다음과 같이 표현한다.
+Chain rule of calculus란 다른 함수의 미분값이 포함된 함수의 미분을 하는 방법이다. 이때 다른 함수의 미분값은 이미 알고 있는 상태이다. 예를 들어, y = g(x) 와  z = f(g(x)) = f(y)라고 가정할 때, z에대한 x의 미분값으로 다음과 같이 표현한다.
 
 ![eq](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bdz%7D%7Bdx%7D%20%3D%20%5Cfrac%7Bdz%7D%7Bdy%7D%5Cfrac%7Bdy%7D%7Bdx%7D)
 
