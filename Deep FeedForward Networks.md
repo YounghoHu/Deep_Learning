@@ -204,4 +204,25 @@ Logistic Sigmoid는 ReLu를 사용 하기 이전에 가장 많이 쓰였던 acti
 
 위의 수식으로 표현하며, tanh와 유사하지만, 경계가 다르다.
 
-### Architecture 설계
+### Architecture(구조) 설계
+신경망에서 구조란 몇개의 Hidden Unit을 사용하고 이 Unit들을 서로 연결시키는 방법을 뜻한다. 대부분의 신경망에서 이 Unit들을 레이어라 칭하며 각각의 레이어는 함수로 표현된다. 예시로, 첫번째 레이어는 다음과 같이 표현하며,
+
+![eq](https://latex.codecogs.com/gif.latex?h%5E%7B%281%29%7D%20%3D%20g%5E%7B%281%29%7D%28W%5E%7B%281%29%7Dx%20&plus;%20b%5E%7B%281%29%7D%29)
+
+첫번째 레어어와 두번째 레이어를 연결 하면 다음과 같이 표현한다.
+
+![eq](https://latex.codecogs.com/gif.latex?h%5E%7B%282%29%7D%20%3D%20g%5E%7B%282%29%7D%28W%5E%7B%282%29%7Dh%5E%7B%281%29%7D%20&plus;%20b%5E%7B%282%29%7D%29)
+
+하나의 레이어 안에 있는 Unit의 개수가 구조의 넓이(width)라 칭하며, Hidden layer의 개수가 깊이(depth)라 칭한다. 구조설계에서 깊이와 넓이가 것이 중요 고려대상이다. 신경망이 깊어질 수록 각 레이어당 unit의 개수와 특징개수가 감소 할 수 있지만, 최적화하기 힘든 문제점이있다. 현제는 실험을 통해 validation set의 오류율에 따라 직접 확인해야 한다.
+
+#### Universal Approximation Properties and Depth
+Linear 모델의 많은 cost 함수들이 대채로 convex하기 때문에 학습시키지 쉽지만, linear 함수만 표현이 가능하다. nonlinear함수를 학습 시키기 위해선 각 함수에 맞는 특별한 모델을 설계해야하지만, **universial approximation theorem**에 의하면 linear한 output 레이어와 활성함수가 포함된 하나의 hidden 레이어를 가지고 잇는 feedforward network은 Borel 함수를 예측할 수 있다고 정의한다. Borel 함수란 bounded 되고 닫힌 형태의 Continuous함수를 칭한다. 또한 feedforward network의 미분값이 함수의 미분값을 예측할 수 있다. 
+
+universal approximation theorem에서는 학습 시키고 싶은 어떠한 함수라도 큰 MLP가 이러한 함수들을 표현 할 수 있다라고 설명한다. 하지만, 학습 알고리즘이 이러한 함수를 학습 할 수 있다고 장담할 수 없다. 두가지 이유로, 학습시 사용한 optimization 알고리즘이 원하는 parameter의 값을 찾을 수 없을 수도 있고 두번째로, overfitting으로 인해 학습 알고리즘이 알맞는 함수를 찾지 못할 수 있다. 
+
+정리하면, 하나의 레이어를 가지고 있는 feedforwd network는 어떠한 함수도 표현할 수 있지만, 이 레이어가 수용할 수 없을 정도로 클수도 있기 때문에 학습이 실패할 수 있다. 대부분의 상황에서는 깊이를 증가 시켜 각 레이어의 unit의 개수를 감소 하여 학습을 진행 할 수 있다.
+
+#### Other Architectural Considerations
+위에선 신경망의 깊이와 넓이를 고려대상으로 정하였지만, 다른 고려대상으론 각 레이어들을 어떻게 연결 시키는지도 생각해야 한다. Convolutional networks와 Recurrent networks처럼 chain 연결 방식이 아닌 구조도 생각해보아야 한다. 
+
+### Back-Propagation and other differenciation algorithms
