@@ -6,6 +6,7 @@ citation:
     note={\url{http://www.deeplearningbook.org}},
     year={2016}
 }
+
 작성자:허영호
 aozmfh34@gmail.com
 
