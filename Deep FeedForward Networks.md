@@ -17,7 +17,7 @@ FeedForward라고 불리는 이유는 입력값 x로부터 함수 *f* 를 통해
 
 또한, Deep으로 불리는 이유는 함수 *f* 에 들어가는 값이 입력값 x뿐만 아니라 함수 *f* 의 결괏값이 될 수 있기 때문이다. 예로, ![equation](https://latex.codecogs.com/gif.latex?y%3Df%5E%7B%283%29%7D%28f%5E%7B%282%29%7D%28f%5E%7B%281%29%7D%28x%29%29%29) 함수처럼, 함수의 입력값이 다른 함수의 값이 되어 각 함수를 연결할 수 있다.
 
-이러한 구조는 신경망에서 가장 많이 쓰이고 3단계의 계층(**Input Layer**, **Hidden Layer**, **Output Layer**)으로 정의할 수 있다. 예제에서, x는 입력값 계층(**Input layer**), ![equation](https://latex.codecogs.com/gif.latex?f%5E%7B%281%29%7D)는 두 번째 계층, ![equation](https://latex.codecogs.com/gif.latex?f%5E%7B%282%29%7D)는 세 번째 계층, 마지막 계층(y)은 결괏값 계층(**Output Layer**)이라 부른다. 이때 입력값 계층과 결괏값 계층 사이에 있는 계층들이 **Hidden Layer**이다.
+이러한 구조는 신경망에서 가장 많이 쓰이고 3단계의 계층(**Input Layer**, **Hidden Layer**, **Output Layer**)으로 정의할 수 있다. 예제에서, x는 입력값 계층(**Input layer**), $$f^{(1)}$$는 두 번째 계층, ![equation](https://latex.codecogs.com/gif.latex?f%5E%7B%282%29%7D)는 세 번째 계층, 마지막 계층(y)은 결괏값 계층(**Output Layer**)이라 부른다. 이때 입력값 계층과 결괏값 계층 사이에 있는 계층들이 **Hidden Layer**이다.
 
 ### Linear vs. nonLinear
 Linear 모델(linear Regession, Logistic Regression)은 닫힌 형태의 수식 또는 convex 형태의 그래프일 때 안정적이고 효과적인 결괏값을 구할 수 있지만, 일차 함수에서만 사용할 수 있고, 결국 linear 모델은 두 개의 입력값 사이의 관계를 이해할 수 없다는 단점을 가지고 있다. 이를 극복하기 위해 linear 모델에 입력값 x를 바로 대입하지 않고 x를 커널 함수(**Kernel function**) ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)에 대입하여 nonlinear로 변경 후 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi%28x%29)를 모델의 입력값으로 대입한다. 이 함수 ![equation](https://latex.codecogs.com/gif.latex?%5Cphi)를 nonlinear transformation이라 한다.
