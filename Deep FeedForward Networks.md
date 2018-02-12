@@ -255,3 +255,8 @@ Chain rule of calculus란 다른 함수의 미분값이 포함된 함수의 미�
 ![eq](figure/graph1.JPG) ![eq](figure/graph1-1.JPG)
 
 위의 graph에서 chain rule을 적용하여 미분값을 구하려면 옆과 같은 수식이 만들어진다.
+
+#### Symbol-to-Symbol Derivatives
+Symbol-to-Symbol은 특정한 값이 정해지지 않은 변수를 뜻한다. 이러한 변수를 미분하는 것을 Symbol-to-Symbol derivatives라고 칭한다. 아래의 그림을 보면 이해하기 쉽다.
+
+![eq](figure/graph2.JPG)
