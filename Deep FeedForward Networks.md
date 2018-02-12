@@ -238,3 +238,14 @@ universal approximation theorem에서는 학습 시키고 싶은 어떠한 함�
 위에선 신경망의 깊이와 넓이를 고려대상으로 정하였지만, 다른 고려대상으론 각 레이어들을 어떻게 연결 시키는지도 생각해야 한다. Convolutional networks와 Recurrent networks처럼 chain 연결 방식이 아닌 구조도 생각해보아야 한다. 
 
 ### Back-Propagation and other differenciation algorithms
+지금까지 입력값 x를 대입하여 hidden 레이어를 거쳐 결과값 y를 구하는 **Forward propagation**을 사용 했다. **Back-Propagation algorithms**은 cost값으로 부터 반대로 입력값까지 뒤로 계산하면서 gradient를 계산하는 알고리즘이다. 흔히 Back-Propagation을 학습 알고리즘으로 잘못 이해하는 경우가 많다. 정확히는 학습 알고리즘 보단 gradient를 계산하는 방법이고 stochastic gradient descent와 같은 알고리즘이 gradient를 학습하는 알고리즘이다. 또한, back-propagation이 다층 신경망 구조에서만 사용 되는 방법이라 잘못이해하는 경우도 있지만, 다층 신경망에서만 쓰이는 것이 아닌 모든 함수에 사용 될 수 있다.
+
+#### Computational Graph
+대채로 신경망은 graph적인 방식으로 표현한다. graph란 노드(node)와 노드를 연결시키는 구조로 표현 하는데, 신경망에서의 노드는 variable로 생각할 수 있다. 이 variable은 상수, vector, tensor,matrix 또는 다른 종류의 값이 될수 있다. 또한 opartion이라는 표현을 사용 하는데. operation이란 한개 또는 여러개의 variable을 대입 시키는 함수이다. 전반적인 관점에서 computational graph를 보면, 입력값 노드에서 operation노드로 입력값을 대입 시켜 나온 결과값을 결과값 노드에 저장 한다라고 생각할 수 있다. 
+
+#### Chain Rule of Calculus
+Chain rule of calculus란 다른 함수의 미분값이 포함된 함수의 미분을 하는 방법이다. 이때 다른 함수의 미분값은 이미 알고 있는 상태이다. 예를 들어, y = g(x) 와  z = f(g(z)) = f(y)라고 가정할 때, z에대한 x의 미분값으로 다음과 같이 표현한다.
+
+![eq](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bdz%7D%7Bdx%7D%20%3D%20%5Cfrac%7Bdz%7D%7Bdy%7D%5Cfrac%7Bdy%7D%7Bdx%7D)
+
+#### Recursively Applying the Chain Rule to obtaion Back-Propagation
