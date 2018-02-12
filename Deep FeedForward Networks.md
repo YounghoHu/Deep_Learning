@@ -252,4 +252,4 @@ Chain rule of calculus란 다른 함수의 미분값이 포함된 함수의 미�
 #### Recursively Applying the Chain Rule to obtain Back-Propagation
 쉽게 이해하기 위해 예시로 설명하겠다. 다음과 같은 graph를 보면,
 
-![eq](figure/graph1.JPG)
+![eq](figure/graph1.JPG) ![eq](figure/graph1-1.JPG)
