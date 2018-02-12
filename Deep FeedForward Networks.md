@@ -248,4 +248,8 @@ Chain rule of calculus란 다른 함수의 미분값이 포함된 함수의 미�
 
 ![eq](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bdz%7D%7Bdx%7D%20%3D%20%5Cfrac%7Bdz%7D%7Bdy%7D%5Cfrac%7Bdy%7D%7Bdx%7D)
 
-#### Recursively Applying the Chain Rule to obtaion Back-Propagation
+위의 식에서 ![eq](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bdy%7D%7Bdx%7D)는 y=g(x)로 쉽게 구할 수 있으며 ![eq](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bdz%7D%7Bdy%7D)또한 z=f(y)를 통해 미분 값을 구한 후 두미분 값을 서로 곱하여 chain rule를 사용 하지않았을 때 계산하기 힘든 ![eq](https://latex.codecogs.com/gif.latex?%5Cfrac%7Bdz%7D%7Bdx%7D)의 값을 쉽게 구할 수 있다.
+#### Recursively Applying the Chain Rule to obtain Back-Propagation
+쉽게 이해하기 위해 예시로 설명하겠다. 다음과 같은 graph를 보면,
+
+![eq](figure/graph1)
